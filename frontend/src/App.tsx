@@ -4,6 +4,8 @@ import { QuoteHeader } from "./components/QuoteHeader";
 import { KpiGrid } from "./components/KpiGrid";
 import { RatioTable } from "./components/RatioTable";
 import { PriceChart } from "./components/PriceChart";
+import { SentimentPanel } from "./components/SentimentPanel";
+import { PredictionPanel } from "./components/PredictionPanel";
 import { fetchOnePager } from "./lib/api";
 import type { OnePagerResponse } from "./types";
 
@@ -70,8 +72,9 @@ function App() {
             <PriceChart history={data.history} currency={data.quote.currency} />
             <KpiGrid quote={data.quote} ratios={data.ratios} />
             <RatioTable ratios={data.ratios} />
-            <div className="rounded-lg border border-dashed border-neutral-800 px-4 py-10 text-center text-sm text-neutral-500">
-              Sentiment and prediction land in the next stage.
+            <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
+              <SentimentPanel sentiment={data.sentiment} />
+              <PredictionPanel prediction={data.prediction} currency={data.quote.currency} />
             </div>
           </div>
         )}

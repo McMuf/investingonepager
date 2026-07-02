@@ -30,3 +30,17 @@ export function formatCompact(value: number | undefined): string {
     maximumFractionDigits: 2,
   }).format(value);
 }
+
+export function formatRelativeTime(unixSeconds: number | undefined): string {
+  if (unixSeconds == null) return "";
+  const diffMs = Date.now() - unixSeconds * 1000;
+  const diffHours = diffMs / (1000 * 60 * 60);
+  if (diffHours < 1) return "just now";
+  if (diffHours < 24) return `${Math.round(diffHours)}h ago`;
+  const diffDays = diffHours / 24;
+  if (diffDays < 7) return `${Math.round(diffDays)}d ago`;
+  return new Date(unixSeconds * 1000).toLocaleDateString("en-US", {
+    month: "short",
+    day: "numeric",
+  });
+}
