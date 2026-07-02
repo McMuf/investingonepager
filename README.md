@@ -13,11 +13,19 @@ trend indicator.
 ## Development
 
 ```bash
-# backend (http://localhost:4000)
-cd backend && npm install && npm run dev
+npm run install:all   # installs root, backend, and frontend deps
+npm run dev           # runs backend (:4000) and frontend (:5173) together
+```
 
-# frontend (http://localhost:5173)
-cd frontend && npm install && npm run dev
+Open http://localhost:5173 and search a ticker (e.g. AAPL, MSFT, TSLA). The
+Vite dev server proxies `/api/*` requests to the backend, so no extra config
+is needed locally.
+
+To run them separately instead:
+
+```bash
+cd backend && npm install && npm run dev    # http://localhost:4000
+cd frontend && npm install && npm run dev   # http://localhost:5173
 ```
 
 ## Disclaimer
