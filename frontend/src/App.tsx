@@ -1,6 +1,9 @@
 import { useState } from "react";
 import { SearchBar } from "./components/SearchBar";
 import { QuoteHeader } from "./components/QuoteHeader";
+import { KpiGrid } from "./components/KpiGrid";
+import { RatioTable } from "./components/RatioTable";
+import { PriceChart } from "./components/PriceChart";
 import { fetchOnePager } from "./lib/api";
 import type { OnePagerResponse } from "./types";
 
@@ -64,9 +67,11 @@ function App() {
         {data && !loading && (
           <div className="flex flex-col gap-8">
             <QuoteHeader quote={data.quote} />
+            <PriceChart history={data.history} currency={data.quote.currency} />
+            <KpiGrid quote={data.quote} ratios={data.ratios} />
+            <RatioTable ratios={data.ratios} />
             <div className="rounded-lg border border-dashed border-neutral-800 px-4 py-10 text-center text-sm text-neutral-500">
-              Ratios, KPIs, chart, sentiment, and prediction land in the next
-              stage.
+              Sentiment and prediction land in the next stage.
             </div>
           </div>
         )}
